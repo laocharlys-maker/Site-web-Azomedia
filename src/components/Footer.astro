@@ -1,0 +1,85 @@
+---
+import { site, navLinks } from "../data/site";
+import Icon from "./Icon.astro";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-navy text-white/80">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 grid gap-12 md:grid-cols-4">
+    <div class="md:col-span-2">
+      <p class="font-heading text-2xl font-bold text-white mb-3">
+        Azo<span class="text-accent">MedIA</span>
+      </p>
+      <p class="text-sm max-w-sm leading-relaxed">
+        Agence de solutions numériques intelligentes basée à {site.city}. Diagnostic, déploiement, formation et
+        support — un accompagnement humain de bout en bout pour les entreprises africaines.
+      </p>
+      <div class="flex gap-3 mt-6">
+        <a
+          href={site.socials.facebook}
+          class="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-accent transition-colors"
+          aria-label="Facebook"
+        >
+          f
+        </a>
+        <a
+          href={site.socials.linkedin}
+          class="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-accent transition-colors"
+          aria-label="LinkedIn"
+        >
+          in
+        </a>
+        <a
+          href={site.socials.instagram}
+          class="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-accent transition-colors"
+          aria-label="Instagram"
+        >
+          ig
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="text-white font-semibold mb-4">Liens rapides</p>
+      <ul class="space-y-2 text-sm">
+        {
+          navLinks.map((link) => (
+            <li>
+              <a href={link.href} class="hover:text-white transition-colors">
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div>
+      <p class="text-white font-semibold mb-4">Contact</p>
+      <ul class="space-y-3 text-sm">
+        <li class="flex items-center gap-2">
+          <Icon name="phone" class="w-4 h-4 text-accent shrink-0" />
+          <a href={`tel:${site.phone.replace(/\s/g, "")}`} class="hover:text-white transition-colors">{site.phone}</a>
+        </li>
+        <li class="flex items-center gap-2">
+          <Icon name="mail" class="w-4 h-4 text-accent shrink-0" />
+          <a href={`mailto:${site.email}`} class="hover:text-white transition-colors">{site.email}</a>
+        </li>
+        <li class="flex items-center gap-2">
+          <Icon name="pin" class="w-4 h-4 text-accent shrink-0" />
+          {site.address}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div
+      class="max-w-7xl mx-auto px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/50"
+    >
+      <p>&copy; {year} AzoMedIA. Tous droits réservés.</p>
+      <p>IFU {site.ifu} — {site.rccm}</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,52 @@
+---
+import { site, marqueeItems } from "../data/site";
+import Icon from "./Icon.astro";
+
+// Le bandeau défile en boucle infinie : on duplique la liste pour un effet continu (voir animation "marquee" dans src/styles/global.css)
+const marqueeLoop = [...marqueeItems, ...marqueeItems];
+---
+
+<section class="relative bg-navy-gradient text-white overflow-hidden pt-40 pb-28">
+  <div class="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 text-center">
+    <p class="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-accent bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-6">
+      Agence numérique · {site.city}
+    </p>
+
+    <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 text-balance">
+      L'Intelligence Artificielle au service de votre entreprise, <span class="text-accent">pas l'inverse.</span>
+    </h1>
+
+    <p class="text-white/75 text-base sm:text-lg max-w-2xl mx-auto mb-10 text-balance">
+      AzoMedIA conçoit des solutions numériques sur mesure, adaptées aux réalités de votre métier, avec un
+      accompagnement humain de bout en bout : diagnostic, déploiement, formation et support.
+    </p>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a
+        href="#contact"
+        class="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white font-semibold px-8 py-3.5 rounded-full transition-colors"
+      >
+        Audit gratuit
+        <Icon name="arrow" class="w-4 h-4" />
+      </a>
+      <a
+        href="#services"
+        class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-3.5 rounded-full border border-white/20 transition-colors"
+      >
+        Découvrir nos solutions
+      </a>
+    </div>
+  </div>
+
+  <div class="relative z-10 mt-20 border-y border-white/10 py-4 overflow-hidden">
+    <div class="flex whitespace-nowrap animate-marquee">
+      {
+        marqueeLoop.map((item) => (
+          <span class="mx-6 text-sm font-semibold tracking-widest text-white/60 uppercase">
+            {item} <span class="text-accent mx-6">•</span>
+          </span>
+        ))
+      }
+    </div>
+  </div>
+</section>

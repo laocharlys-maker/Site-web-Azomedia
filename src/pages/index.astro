@@ -1,0 +1,264 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Icon from "../components/Icon.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
+import CTASection from "../components/CTASection.astro";
+import { site, services, painPoints, pillars, sectors, testimonials, realisations } from "../data/site";
+---
+
+<Layout
+  title="AzoMedIA — Agence de solutions numériques intelligentes à Cotonou, Bénin"
+  description="AzoMedIA conçoit des solutions numériques sur mesure pour les entreprises béninoises et africaines : audit IA, sites web, agents IA, automatisation, chatbot et formations."
+>
+  <Hero />
+
+  <!-- Le problème -->
+  <section class="py-24 bg-surface">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="max-w-2xl mb-14">
+        <h2 class="reveal font-heading text-3xl md:text-4xl font-bold text-navy mb-4">
+          Chaque jour sans solution numérique a un coût
+        </h2>
+        <p class="reveal text-navy/70">
+          Ce ne sont pas juste des désagréments : ce sont des opportunités concrètes qui échappent à votre
+          entreprise.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {
+          painPoints.map((point) => (
+            <div class="reveal">
+              <div class="w-10 h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center font-heading font-bold mb-4">
+                !
+              </div>
+              <h3 class="font-heading text-lg font-semibold text-navy mb-2">{point.title}</h3>
+              <p class="text-sm text-navy/70 leading-relaxed">{point.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Nos services -->
+  <section id="services" class="py-24 bg-white scroll-mt-20">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="max-w-2xl mb-14">
+        <p class="reveal text-accent font-semibold text-sm uppercase tracking-widest mb-3">Nos services</p>
+        <h2 class="reveal font-heading text-3xl md:text-4xl font-bold text-navy mb-4">
+          Des solutions concrètes, du diagnostic au déploiement
+        </h2>
+        <p class="reveal text-navy/70">
+          Chaque service peut être pris isolément ou combiné dans un accompagnement complet.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          services.map((service, i) => (
+            <ServiceCard {...service} featured={i === 0} />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Pourquoi AzoMedIA -->
+  <section id="pourquoi-nous" class="py-24 bg-surface scroll-mt-20">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="max-w-2xl mb-14">
+        <p class="reveal text-accent font-semibold text-sm uppercase tracking-widest mb-3">Pourquoi AzoMedIA</p>
+        <h2 class="reveal font-heading text-3xl md:text-4xl font-bold text-navy mb-4">
+          Une approche pensée pour les réalités du terrain
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {
+          pillars.map((pillar) => (
+            <div class="reveal">
+              <div class="w-10 h-10 rounded-xl bg-navy text-white flex items-center justify-center mb-4">
+                <Icon name="check" class="w-5 h-5" />
+              </div>
+              <h3 class="font-heading text-base font-semibold text-navy mb-2">{pillar.title}</h3>
+              <p class="text-sm text-navy/70 leading-relaxed">{pillar.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Réalisations -->
+  <section id="realisations" class="py-24 bg-white scroll-mt-20">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="max-w-2xl mb-14">
+        <p class="reveal text-accent font-semibold text-sm uppercase tracking-widest mb-3">Réalisations</p>
+        <h2 class="reveal font-heading text-3xl md:text-4xl font-bold text-navy mb-4">Ils nous font confiance</h2>
+        <p class="reveal text-navy/70">
+          Nos premiers cas concrets — d'autres projets viendront enrichir cette section.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          realisations.map((r) => (
+            <div class="reveal rounded-2xl border border-navy/5 bg-surface p-6 flex flex-col">
+              <p class="font-heading font-semibold text-navy mb-1">{r.name}</p>
+              <p class="text-xs text-navy/50 mb-4">{r.location}</p>
+              <p class="text-sm text-navy/70 leading-relaxed flex-1">{r.description}</p>
+              <p class="mt-4 text-xs font-semibold text-accent uppercase tracking-wide">{r.stat}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Secteurs ciblés -->
+  <section id="secteurs" class="py-24 bg-surface scroll-mt-20">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="max-w-2xl mb-14">
+        <p class="reveal text-accent font-semibold text-sm uppercase tracking-widest mb-3">Secteurs ciblés</p>
+        <h2 class="reveal font-heading text-3xl md:text-4xl font-bold text-navy mb-4">
+          Une expertise qui s'adapte à votre secteur
+        </h2>
+      </div>
+
+      <div class="flex flex-wrap gap-3">
+        {
+          sectors.map((sector) => (
+            <span class="reveal px-5 py-2.5 rounded-full bg-white border border-navy/10 text-sm font-medium text-navy">
+              {sector}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Témoignages -->
+  <section class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="max-w-2xl mb-14">
+        <p class="reveal text-accent font-semibold text-sm uppercase tracking-widest mb-3">Témoignages</p>
+        <h2 class="reveal font-heading text-3xl md:text-4xl font-bold text-navy mb-4">Ce qu'ils en disent</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {testimonials.map((t) => <TestimonialCard {...t} />)}
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+
+  <!-- Contact -->
+  <section id="contact" class="py-24 bg-surface scroll-mt-20">
+    <div class="max-w-5xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-14">
+      <div>
+        <p class="reveal text-accent font-semibold text-sm uppercase tracking-widest mb-3">Contact</p>
+        <h2 class="reveal font-heading text-3xl md:text-4xl font-bold text-navy mb-4">Parlons de votre projet</h2>
+        <p class="reveal text-navy/70 mb-8">
+          Décrivez-nous votre besoin, on revient vers vous rapidement pour caler un premier échange.
+        </p>
+
+        <ul class="reveal space-y-4 text-sm">
+          <li class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-full bg-accent/10 text-accent flex items-center justify-center">
+              <Icon name="phone" class="w-4 h-4" />
+            </span>
+            <a href={`tel:${site.phone.replace(/\s/g, "")}`} class="text-navy font-medium">{site.phone}</a>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-full bg-accent/10 text-accent flex items-center justify-center">
+              <Icon name="mail" class="w-4 h-4" />
+            </span>
+            <a href={`mailto:${site.email}`} class="text-navy font-medium">{site.email}</a>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-full bg-accent/10 text-accent flex items-center justify-center">
+              <Icon name="pin" class="w-4 h-4" />
+            </span>
+            <span class="text-navy font-medium">{site.address}</span>
+          </li>
+        </ul>
+      </div>
+
+      <!--
+        TODO déploiement : ce formulaire n'a pas encore de backend (site 100% statique, pas de PHP/DB).
+        Le plus simple à brancher sans serveur : un service tiers comme Formspree / Web3Forms
+        (remplacer `action` ci-dessous par l'URL fournie par le service, en conservant method="POST").
+      -->
+      <form class="reveal bg-white rounded-2xl border border-navy/5 shadow-sm p-8 space-y-4" method="POST" action="#">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="name" class="block text-xs font-semibold text-navy/70 mb-1.5">Nom *</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              required
+              class="w-full rounded-lg border border-navy/10 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/50"
+            />
+          </div>
+          <div>
+            <label for="company" class="block text-xs font-semibold text-navy/70 mb-1.5">Entreprise</label>
+            <input
+              id="company"
+              name="company"
+              type="text"
+              class="w-full rounded-lg border border-navy/10 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/50"
+            />
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="phone" class="block text-xs font-semibold text-navy/70 mb-1.5">Téléphone / WhatsApp *</label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              required
+              class="w-full rounded-lg border border-navy/10 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/50"
+            />
+          </div>
+          <div>
+            <label for="sector" class="block text-xs font-semibold text-navy/70 mb-1.5">Secteur</label>
+            <select
+              id="sector"
+              name="sector"
+              class="w-full rounded-lg border border-navy/10 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/50"
+            >
+              <option value="">Sélectionner...</option>
+              {sectors.map((sector) => <option value={sector}>{sector}</option>)}
+              <option value="Autre">Autre</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label for="message" class="block text-xs font-semibold text-navy/70 mb-1.5">Message *</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            required
+            class="w-full rounded-lg border border-navy/10 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/50"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full inline-flex items-center justify-center bg-accent hover:bg-accent-dark text-white font-semibold px-8 py-3.5 rounded-full transition-colors"
+        >
+          Envoyer ma demande
+        </button>
+      </form>
+    </div>
+  </section>
+</Layout>

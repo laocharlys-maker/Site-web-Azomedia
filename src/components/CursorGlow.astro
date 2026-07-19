@@ -1,0 +1,61 @@
+---
+// Point lumineux qui suit le curseur en fond, désactivé sur tactile (pointer: coarse).
+// Discret par design : filter blur + faible opacité, z-index bas, pointer-events: none.
+---
+
+<div id="cursor-glow" class="cursor-glow" aria-hidden="true"></div>
+
+<style>
+  .cursor-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(227, 30, 36, 0.25), transparent 70%);
+    filter: blur(40px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transform: translate(-9999px, -9999px);
+    transition: opacity 0.4s ease-out;
+    will-change: transform;
+  }
+
+  .cursor-glow.is-active {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  const glow = document.getElementById("cursor-glow");
+
+  if (glow && window.matchMedia("(pointer: fine)").matches) {
+    let targetX = window.innerWidth / 2;
+    let targetY = window.innerHeight / 2;
+    let currentX = targetX;
+    let currentY = targetY;
+    const halfSize = 260; // moitié de la largeur/hauteur du glow, pour le centrer sur le curseur
+
+    window.addEventListener(
+      "mousemove",
+      (e) => {
+        targetX = e.clientX;
+        targetY = e.clientY;
+        glow.classList.add("is-active");
+      },
+      { passive: true }
+    );
+
+    function tick() {
+      // lissage (lerp) pour un effet "suit avec inertie"
+      currentX += (targetX - currentX) * 0.12;
+      currentY += (targetY - currentY) * 0.12;
+      glow.style.transform = `translate(${currentX - halfSize}px, ${currentY - halfSize}px)`;
+      requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+  }
+</script>

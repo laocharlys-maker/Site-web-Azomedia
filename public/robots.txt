@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://azomedia.site/sitemap-index.xml
