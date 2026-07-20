@@ -16,6 +16,8 @@ export const site = {
   address: "Cotonou, Bénin", // TODO: précise le quartier si tu veux l'afficher
   ifu: "0201810513645",
   rccm: "RCCM RB/ABC/21 A 26551",
+  legalRepresentative: "Sam LAO",
+  legalForm: "Entreprise Individuelle",
   socials: {
     facebook: "https://www.facebook.com/azomedia/",
     // Lien public reconstruit depuis l'URL admin fournie (.../admin/page-posts/published/ n'est pas accessible publiquement)

@@ -20,6 +20,8 @@ import { site } from "../data/site";
         Le site {site.name} est édité par AzoMedIA, agence de solutions numériques intelligentes basée à {site.city}.
       </p>
       <ul>
+        <li>Forme juridique : {site.legalForm}</li>
+        <li>Représentant légal / Directeur de la publication : {site.legalRepresentative}</li>
         <li>IFU : {site.ifu}</li>
         <li>{site.rccm}</li>
         <li>Adresse : {site.address}</li>
@@ -30,12 +32,6 @@ import { site } from "../data/site";
           Email : <a href={`mailto:${site.email}`}>{site.email}</a>
         </li>
       </ul>
-      <p>
-        <em>
-          Directeur de la publication : à compléter (nom du représentant légal). Forme juridique de la structure : à
-          compléter.
-        </em>
-      </p>
 
       <h2>Hébergement</h2>
       <p>
