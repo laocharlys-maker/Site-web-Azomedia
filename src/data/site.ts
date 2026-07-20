@@ -4,8 +4,9 @@ import ticfocaTournoi from "../assets/realisations/ticfoca-tournoi.png";
 import ticfocaInscription from "../assets/realisations/ticfoca-inscription.png";
 import stage2026 from "../assets/realisations/stage-2026.png";
 import evalTyrannus from "../assets/realisations/eval-tyrannus.png";
-// TODO: remplacer par la vraie photo une fois déposée dans src/assets/profile/
-import founderPhoto from "../assets/profile/founder-placeholder.png";
+import azpoint from "../assets/profile/u_h0yvbj97-fingerprint-4703841_1920.jpg";
+import founderPhoto from "../assets/profile/WhatsApp Image 2025-09-20 at 15.08.48.jpeg";
+import teamPhoto from "../assets/profile/pexels-gabby-k-9488846.jpg";
 
 // Coordonnées et liens globaux du site.
 // -> Modifie ces valeurs ici, elles sont réutilisées partout (header, footer, CTA, WhatsApp flottant).
@@ -30,18 +31,22 @@ export const site = {
   // TODO: remplacer par ta vraie clé Web3Forms (gratuite, sur https://web3forms.com) pour recevoir
   // les soumissions des formulaires (Audit + Contact) directement par email. Tant que ce placeholder
   // reste en place, les formulaires afficheront une erreur d'envoi.
-  web3formsAccessKey: "REPLACE_WITH_YOUR_WEB3FORMS_ACCESS_KEY",
+  web3formsAccessKey: "dda20fd7-36a5-49fd-98b0-5b50a103e840",
 };
 
-// Photo en attente : dépose le vrai fichier dans src/assets/profile/ et remplace l'import "founderPhoto" ci-dessus.
 export const founder = {
-  name: "Sam LAO",
+  name: "Sam Charlys",
   role: "Spécialiste de l'IA et du no-code",
   photo: founderPhoto,
   bio: [
     "Fondateur d'AzoMedIA, je conçois des solutions numériques et des automatisations sur mesure pour les entreprises et organisations béninoises — sans jargon technique, avec un accompagnement humain de bout en bout.",
     "Spécialisé dans l'intelligence artificielle appliquée et les outils no-code, je construis des plateformes fonctionnelles rapidement : inscriptions en ligne, paiement Mobile Money, agents IA, automatisations métier.",
   ],
+};
+
+export const team = {
+  photo: teamPhoto,
+  caption: "Une équipe de jeunes passionnés au service des entreprises.",
 };
 
 export const navLinks = [
@@ -233,14 +238,13 @@ export const realisations: Realisation[] = [
       "Plateforme d'évaluation scolaire : suivi des modules, des résultats et du bulletin de chaque élève depuis un tableau de bord dédié.",
     image: evalTyrannus,
   },
-  // TODO: pas encore de capture d'écran pour ces deux solutions — cartes texte en attendant.
   {
     name: "AzPoint",
     category: "Gestion RH / Pointage",
     description: "Solution numérique de pointage pour les entreprises : suivi des présences et des horaires du personnel.",
-    icon: "clock",
-    placeholder: true,
+    image: azpoint,
   },
+  // TODO: pas encore de capture d'écran pour cette solution — carte texte en attendant.
   {
     name: "Solution pour cabinets juridiques",
     category: "Secteur juridique",
