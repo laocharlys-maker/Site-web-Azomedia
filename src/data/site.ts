@@ -1,8 +1,11 @@
+import type { ImageMetadata } from "astro";
 import asm2026 from "../assets/realisations/asm-2026.png";
 import ticfocaTournoi from "../assets/realisations/ticfoca-tournoi.png";
 import ticfocaInscription from "../assets/realisations/ticfoca-inscription.png";
 import stage2026 from "../assets/realisations/stage-2026.png";
 import evalTyrannus from "../assets/realisations/eval-tyrannus.png";
+// TODO: remplacer par la vraie photo une fois déposée dans src/assets/profile/
+import founderPhoto from "../assets/profile/founder-placeholder.png";
 
 // Coordonnées et liens globaux du site.
 // -> Modifie ces valeurs ici, elles sont réutilisées partout (header, footer, CTA, WhatsApp flottant).
@@ -24,11 +27,27 @@ export const site = {
     linkedin: "https://www.linkedin.com/company/103376744/",
     instagram: "#", // TODO: lien réel
   },
+  // TODO: remplacer par ta vraie clé Web3Forms (gratuite, sur https://web3forms.com) pour recevoir
+  // les soumissions des formulaires (Audit + Contact) directement par email. Tant que ce placeholder
+  // reste en place, les formulaires afficheront une erreur d'envoi.
+  web3formsAccessKey: "REPLACE_WITH_YOUR_WEB3FORMS_ACCESS_KEY",
+};
+
+// Photo en attente : dépose le vrai fichier dans src/assets/profile/ et remplace l'import "founderPhoto" ci-dessus.
+export const founder = {
+  name: "Sam LAO",
+  role: "Spécialiste de l'IA et du no-code",
+  photo: founderPhoto,
+  bio: [
+    "Fondateur d'AzoMedIA, je conçois des solutions numériques et des automatisations sur mesure pour les entreprises et organisations béninoises — sans jargon technique, avec un accompagnement humain de bout en bout.",
+    "Spécialisé dans l'intelligence artificielle appliquée et les outils no-code, je construis des plateformes fonctionnelles rapidement : inscriptions en ligne, paiement Mobile Money, agents IA, automatisations métier.",
+  ],
 };
 
 export const navLinks = [
   { label: "Services", href: "/#services" },
   { label: "Pourquoi nous", href: "/#pourquoi-nous" },
+  { label: "À propos", href: "/#a-propos" },
   { label: "Réalisations", href: "/#realisations" },
   { label: "Secteurs", href: "/#secteurs" },
   { label: "Blog", href: "/blog" },
@@ -169,7 +188,16 @@ export const testimonials: Testimonial[] = [
   },
 ];
 
-export const realisations = [
+type Realisation = {
+  name: string;
+  category: string;
+  description: string;
+  image?: ImageMetadata;
+  icon?: string;
+  placeholder?: boolean;
+};
+
+export const realisations: Realisation[] = [
   {
     name: "Au Sommet des Montagnes 2026",
     category: "Événementiel",
@@ -204,5 +232,20 @@ export const realisations = [
     description:
       "Plateforme d'évaluation scolaire : suivi des modules, des résultats et du bulletin de chaque élève depuis un tableau de bord dédié.",
     image: evalTyrannus,
+  },
+  // TODO: pas encore de capture d'écran pour ces deux solutions — cartes texte en attendant.
+  {
+    name: "AzPoint",
+    category: "Gestion RH / Pointage",
+    description: "Solution numérique de pointage pour les entreprises : suivi des présences et des horaires du personnel.",
+    icon: "clock",
+    placeholder: true,
+  },
+  {
+    name: "Solution pour cabinets juridiques",
+    category: "Secteur juridique",
+    description: "Outil numérique sur mesure pour les juristes et cabinets d'avocats, pensé pour leurs process métier.",
+    icon: "scale",
+    placeholder: true,
   },
 ];

@@ -29,18 +29,24 @@ npm run preview  # sert dist/ localement pour vérifier le build
 | Articles de blog | `src/content/blog/*.md` (un fichier = un article) |
 | Couleurs, polices | `src/styles/global.css` (bloc `@theme`) |
 
+## Formulaires (Audit + Contact) — activer l'envoi par email
+
+Les deux formulaires (popup "Audit gratuit" et section Contact de la page d'accueil) envoient leurs soumissions via
+[Web3Forms](https://web3forms.com) — gratuit, sans backend à héberger, aucune inscription complexe :
+
+1. Va sur [web3forms.com](https://web3forms.com), entre l'email où tu veux recevoir les demandes
+2. Tu reçois une clé d'accès (`access_key`) par email
+3. Remplace `web3formsAccessKey` dans `src/data/site.ts` par cette clé
+
+Tant que ce placeholder n'est pas remplacé, les formulaires afficheront un message d'échec d'envoi.
+
 ## État actuel — à finaliser
 
-- **Formulaire de contact** : pas de backend (site statique, pas de PHP/DB). L'`action` du formulaire dans
-  `src/pages/index.astro` est un placeholder — brancher un service comme
-  [Formspree](https://formspree.io) ou [Web3Forms](https://web3forms.com) (gratuit, aucune infra à gérer).
-- **Réalisations** (`src/data/site.ts`, tableau `realisations`) : cas "Clinique Serena" illustratif en attendant de
-  vraies captures/résultats clients.
+- **Réalisations** (`src/data/site.ts`, tableau `realisations`) : AzPoint et la solution Juristes n'ont pas encore de
+  capture d'écran (cartes texte en attendant).
 - **Témoignages** : trois emplacements réservés (`testimonials` dans `src/data/site.ts`).
-- **RCCM** : en attente du document, actuellement en placeholder dans le footer.
-- **Logo header** : la version fournie est un rendu "glow" (flou), utilisée en grand format sur le hero. Le header
-  utilise pour l'instant un logo texte stylisé — remplacer par une version nette si disponible.
-- **Réseaux sociaux** : liens `#` en attendant les vrais profils.
+- **Réseaux sociaux** : Instagram en attente du vrai lien (`#` placeholder).
+- **Photo "À propos"** : avatar temporaire en attendant la vraie photo (à déposer dans `src/assets/profile/`).
 
 ## Déploiement sur VPS Hostinger (Ubuntu 22.04 + Nginx)
 

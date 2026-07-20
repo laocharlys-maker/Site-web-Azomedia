@@ -8,7 +8,9 @@ import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import CursorGlow from "../components/CursorGlow.astro";
+import CustomCursor from "../components/CustomCursor.astro";
 import WhatsAppButton from "../components/WhatsAppButton.astro";
+import AuditModal from "../components/AuditModal.astro";
 
 interface Props {
   title: string;
@@ -43,12 +45,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   </head>
   <body class="relative overflow-x-hidden">
     <CursorGlow />
+    <CustomCursor />
     <Header />
     <main class="relative z-10">
       <slot />
     </main>
     <Footer />
     <WhatsAppButton />
+    <AuditModal />
 
     <script>
       // Animation d'apparition au scroll pour tous les éléments .reveal (natif, sans librairie).

@@ -1,0 +1,123 @@
+---
+// Curseur personnalisé : un petit point qui suit exactement la souris + un anneau
+// qui suit avec un léger retard (lerp), désactivé sur tactile (pointer: coarse).
+---
+
+<div id="cursor-dot" class="cursor-dot" aria-hidden="true"></div>
+<div id="cursor-ring" class="cursor-ring" aria-hidden="true"></div>
+
+<style>
+  .cursor-dot,
+  .cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+    will-change: transform;
+  }
+
+  .cursor-dot {
+    width: 8px;
+    height: 8px;
+    margin: -4px 0 0 -4px;
+    background: #e31e24;
+  }
+
+  .cursor-ring {
+    width: 36px;
+    height: 36px;
+    margin: -18px 0 0 -18px;
+    border: 1.5px solid rgba(227, 30, 36, 0.6);
+    transition:
+      opacity 0.3s ease-out,
+      width 0.2s ease-out,
+      height 0.2s ease-out,
+      margin 0.2s ease-out,
+      border-color 0.2s ease-out;
+  }
+
+  .cursor-dot.is-active,
+  .cursor-ring.is-active {
+    opacity: 1;
+  }
+
+  .cursor-ring.is-hovering {
+    width: 56px;
+    height: 56px;
+    margin: -28px 0 0 -28px;
+    border-color: rgba(227, 30, 36, 0.9);
+  }
+
+  /* Le curseur natif est masqué partout sauf sur les champs de formulaire (besoin du curseur texte) */
+  :global(html.custom-cursor-active),
+  :global(html.custom-cursor-active a),
+  :global(html.custom-cursor-active button) {
+    cursor: none;
+  }
+
+  :global(html.custom-cursor-active input),
+  :global(html.custom-cursor-active textarea),
+  :global(html.custom-cursor-active select) {
+    cursor: auto;
+  }
+</style>
+
+<script>
+  const dot = document.getElementById("cursor-dot");
+  const ring = document.getElementById("cursor-ring");
+
+  if (dot && ring && window.matchMedia("(pointer: fine)").matches) {
+    document.documentElement.classList.add("custom-cursor-active");
+
+    let ringX = window.innerWidth / 2;
+    let ringY = window.innerHeight / 2;
+    let targetX = ringX;
+    let targetY = ringY;
+
+    window.addEventListener(
+      "mousemove",
+      (e) => {
+        targetX = e.clientX;
+        targetY = e.clientY;
+        dot.style.transform = `translate(${targetX}px, ${targetY}px)`;
+        dot.classList.add("is-active");
+        ring.classList.add("is-active");
+      },
+      { passive: true }
+    );
+
+    window.addEventListener("mousedown", () => ring.classList.add("is-hovering"));
+    window.addEventListener("mouseup", () => {
+      if (!(document.activeElement as HTMLElement)?.closest?.("a, button")) {
+        ring.classList.remove("is-hovering");
+      }
+    });
+
+    document.addEventListener("mouseover", (e) => {
+      const target = e.target as HTMLElement;
+      if (target.closest("a, button, [role='button']")) {
+        ring.classList.add("is-hovering");
+      }
+    });
+
+    document.addEventListener("mouseout", (e) => {
+      const target = e.target as HTMLElement;
+      if (target.closest("a, button, [role='button']")) {
+        ring.classList.remove("is-hovering");
+      }
+    });
+
+    function tick() {
+      ringX += (targetX - ringX) * 0.18;
+      ringY += (targetY - ringY) * 0.18;
+      ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
+      requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+  }
+</script>

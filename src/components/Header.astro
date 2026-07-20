@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import { site, navLinks } from "../data/site";
+import { navLinks } from "../data/site";
 import logo from "../assets/branding/logo.png";
 ---
 
@@ -26,14 +26,13 @@ import logo from "../assets/branding/logo.png";
       }
     </nav>
 
-    <a
-      href={site.whatsapp}
-      target="_blank"
-      rel="noopener noreferrer"
+    <button
+      type="button"
+      data-open-audit
       class="hidden sm:inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors"
     >
       Audit gratuit
-    </a>
+    </button>
 
     <button
       id="mobile-menu-btn"
@@ -56,9 +55,9 @@ import logo from "../assets/branding/logo.png";
           </a>
         ))
       }
-      <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="text-accent text-sm font-semibold py-1">
+      <button type="button" data-open-audit class="text-accent text-sm font-semibold py-1 text-left">
         Audit gratuit →
-      </a>
+      </button>
     </nav>
   </div>
 </header>
