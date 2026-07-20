@@ -1,12 +1,14 @@
 ---
+import { Image } from "astro:assets";
 import { site, navLinks } from "../data/site";
+import logo from "../assets/branding/logo.png";
 ---
 
 <header id="site-header" class="fixed top-0 inset-x-0 z-50 transition-colors duration-300">
   <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-20">
-    <a href="/" class="font-heading text-xl font-bold tracking-tight">
-      <span id="logo-text" class="text-white transition-colors duration-300">
-        Azo<span class="text-accent">MedIA</span>
+    <a href="/" class="shrink-0">
+      <span class="inline-flex items-center bg-white rounded-lg px-3 py-1.5 shadow-sm">
+        <Image src={logo} alt="AzoMedIA" width={148} height={59} class="h-6 w-auto" />
       </span>
     </a>
 

@@ -1,3 +1,9 @@
+import asm2026 from "../assets/realisations/asm-2026.png";
+import ticfocaTournoi from "../assets/realisations/ticfoca-tournoi.png";
+import ticfocaInscription from "../assets/realisations/ticfoca-inscription.png";
+import stage2026 from "../assets/realisations/stage-2026.png";
+import evalTyrannus from "../assets/realisations/eval-tyrannus.png";
+
 // Coordonnées et liens globaux du site.
 // -> Modifie ces valeurs ici, elles sont réutilisées partout (header, footer, CTA, WhatsApp flottant).
 export const site = {
@@ -9,10 +15,11 @@ export const site = {
   email: "contact@azomedia.site",
   address: "Cotonou, Bénin", // TODO: précise le quartier si tu veux l'afficher
   ifu: "0201810513645",
-  rccm: "RCCM : à compléter", // TODO: en attente du courrier RCCM
+  rccm: "RCCM RB/ABC/21 A 26551",
   socials: {
-    facebook: "#", // TODO: lien réel
-    linkedin: "#", // TODO: lien réel
+    facebook: "https://www.facebook.com/azomedia/",
+    // Lien public reconstruit depuis l'URL admin fournie (.../admin/page-posts/published/ n'est pas accessible publiquement)
+    linkedin: "https://www.linkedin.com/company/103376744/",
     instagram: "#", // TODO: lien réel
   },
 };
@@ -160,28 +167,40 @@ export const testimonials: Testimonial[] = [
   },
 ];
 
-// TODO: remplacer par les vraies réalisations (captures + résultats) une fois reçues
 export const realisations = [
   {
-    name: "Clinique Serena",
-    location: "Cotonou",
+    name: "Au Sommet des Montagnes 2026",
+    category: "Événementiel",
     description:
-      "Exemple illustratif : mise en place d'un accueil digital pour réduire les rendez-vous manqués et fluidifier la prise de contact patient.",
-    stat: "Cas d'usage illustratif",
-    placeholder: true,
+      "Plateforme d'inscription pour la conférence panafricaine des Servantes de Dieu & Femmes Leaders — plus de 3000 participantes attendues à Cotonou.",
+    image: asm2026,
   },
   {
-    name: "Prochaine réalisation",
-    location: "À venir",
-    description: "Emplacement réservé pour un futur projet client.",
-    stat: "À venir",
-    placeholder: true,
+    name: "TICFOCA — Jubilé de Perle",
+    category: "Événementiel sportif",
+    description:
+      "Site vitrine du tournoi inter-clubs de football d'Abomey-Calavi pour les 30 ans du club — plus de 4 000 000 FCFA de dotation.",
+    image: ticfocaTournoi,
   },
   {
-    name: "Prochaine réalisation",
-    location: "À venir",
-    description: "Emplacement réservé pour un futur projet client.",
-    stat: "À venir",
-    placeholder: true,
+    name: "TICFOCA — Paiement en ligne",
+    category: "Paiement Mobile Money",
+    description:
+      "Formulaire d'inscription au tournoi avec paiement en plusieurs tranches, connecté à MTN MoMo, Moov Money et Celtiis Cash.",
+    image: ticfocaInscription,
+  },
+  {
+    name: "EPS St Jean Bosco",
+    category: "Éducation",
+    description:
+      "Formulaire d'inscription au stage académique de l'établissement, avec collecte des informations d'identité et de scolarité des élèves.",
+    image: stage2026,
+  },
+  {
+    name: "Eval Tyrannus",
+    category: "Éducation",
+    description:
+      "Plateforme d'évaluation scolaire : suivi des modules, des résultats et du bulletin de chaque élève depuis un tableau de bord dédié.",
+    image: evalTyrannus,
   },
 ];

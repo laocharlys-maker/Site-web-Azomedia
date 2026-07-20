@@ -1,0 +1,74 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+---
+
+<Layout
+  title="Politique de confidentialité — AzoMedIA"
+  description="Comment AzoMedIA collecte, utilise et protège les données personnelles transmises via ce site."
+>
+  <header class="pt-40 pb-16 bg-navy-gradient text-white">
+    <div class="max-w-3xl mx-auto px-6 lg:px-8">
+      <h1 class="font-heading text-3xl md:text-4xl font-bold">Politique de confidentialité</h1>
+    </div>
+  </header>
+
+  <div class="bg-surface py-16">
+    <div class="max-w-3xl mx-auto px-6 lg:px-8 prose prose-navy max-w-none prose-headings:font-heading prose-a:text-accent">
+      <p>
+        Cette politique explique quelles données personnelles AzoMedIA collecte via ce site, pourquoi, et comment
+        les exercer vos droits sur celles-ci.
+      </p>
+
+      <h2>Données collectées</h2>
+      <p>Le site collecte des données uniquement lorsque vous remplissez volontairement le formulaire de contact :</p>
+      <ul>
+        <li>Nom</li>
+        <li>Nom de l'entreprise (facultatif)</li>
+        <li>Numéro de téléphone / WhatsApp</li>
+        <li>Secteur d'activité (facultatif)</li>
+        <li>Contenu de votre message</li>
+      </ul>
+      <p>
+        Le site n'utilise actuellement aucun cookie de suivi ni outil d'analyse tiers (pas de Google Analytics ni
+        équivalent).
+      </p>
+
+      <h2>Finalité du traitement</h2>
+      <p>
+        Ces informations sont utilisées exclusivement pour répondre à votre demande de contact ou d'audit gratuit.
+        Elles ne sont ni vendues, ni cédées, ni louées à des tiers.
+      </p>
+
+      <h2>Durée de conservation</h2>
+      <p>
+        Les données transmises via le formulaire sont conservées le temps nécessaire au traitement de votre demande
+        et à la relation commerciale qui pourrait en découler, puis supprimées si aucune suite n'est donnée.
+      </p>
+
+      <h2>Vos droits</h2>
+      <p>
+        Conformément à la réglementation béninoise sur la protection des données à caractère personnel (loi n°
+        2017-20 portant Code du numérique en République du Bénin, sous le contrôle de l'APDP — Autorité de
+        Protection des Données Personnelles), vous disposez d'un droit d'accès, de rectification et de suppression
+        des données vous concernant.
+      </p>
+      <p>
+        Pour exercer ces droits, contactez-nous à <a href={`mailto:${site.email}`}>{site.email}</a> ou par WhatsApp
+        au <a href={site.whatsapp} target="_blank" rel="noopener noreferrer">{site.phone}</a>.
+      </p>
+
+      <h2>Sécurité</h2>
+      <p>
+        AzoMedIA met en œuvre des mesures raisonnables pour protéger les données transmises contre tout accès,
+        modification ou divulgation non autorisés.
+      </p>
+
+      <h2>Modifications</h2>
+      <p>
+        Cette politique peut être mise à jour. La date de dernière modification figure ci-dessous.
+      </p>
+      <p><em>Dernière mise à jour : juillet 2026</em></p>
+    </div>
+  </div>
+</Layout>

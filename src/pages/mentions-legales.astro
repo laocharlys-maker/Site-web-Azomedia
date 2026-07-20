@@ -1,0 +1,67 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+---
+
+<Layout
+  title="Mentions légales — AzoMedIA"
+  description="Mentions légales du site AzoMedIA : éditeur, hébergement, propriété intellectuelle."
+>
+  <header class="pt-40 pb-16 bg-navy-gradient text-white">
+    <div class="max-w-3xl mx-auto px-6 lg:px-8">
+      <h1 class="font-heading text-3xl md:text-4xl font-bold">Mentions légales</h1>
+    </div>
+  </header>
+
+  <div class="bg-surface py-16">
+    <div class="max-w-3xl mx-auto px-6 lg:px-8 prose prose-navy max-w-none prose-headings:font-heading prose-a:text-accent">
+      <h2>Éditeur du site</h2>
+      <p>
+        Le site {site.name} est édité par AzoMedIA, agence de solutions numériques intelligentes basée à {site.city}.
+      </p>
+      <ul>
+        <li>IFU : {site.ifu}</li>
+        <li>{site.rccm}</li>
+        <li>Adresse : {site.address}</li>
+        <li>
+          Téléphone / WhatsApp : <a href={site.whatsapp} target="_blank" rel="noopener noreferrer">{site.phone}</a>
+        </li>
+        <li>
+          Email : <a href={`mailto:${site.email}`}>{site.email}</a>
+        </li>
+      </ul>
+      <p>
+        <em>
+          Directeur de la publication : à compléter (nom du représentant légal). Forme juridique de la structure : à
+          compléter.
+        </em>
+      </p>
+
+      <h2>Hébergement</h2>
+      <p>
+        Le site est hébergé sur un serveur privé virtuel (VPS) chez Hostinger International Ltd, 61 Lordou Vironos
+        Street, 6023 Larnaca, Chypre.
+      </p>
+
+      <h2>Propriété intellectuelle</h2>
+      <p>
+        L'ensemble des contenus présents sur ce site (textes, visuels, logo, structure) est la propriété d'AzoMedIA,
+        sauf mention contraire. Toute reproduction, représentation ou diffusion, totale ou partielle, sans
+        autorisation préalable est interdite.
+      </p>
+
+      <h2>Responsabilité</h2>
+      <p>
+        AzoMedIA s'efforce d'assurer l'exactitude des informations publiées sur ce site, sans garantie de complétude
+        ou d'actualité permanente. AzoMedIA ne saurait être tenue responsable des dommages directs ou indirects liés
+        à l'utilisation de ce site ou à l'impossibilité d'y accéder.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Pour toute question relative à ces mentions légales, contactez-nous à
+        <a href={`mailto:${site.email}`}>{site.email}</a>.
+      </p>
+    </div>
+  </div>
+</Layout>
