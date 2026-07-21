@@ -17,6 +17,7 @@ import {
   founder,
   team,
   whyUsImage,
+  painPointImage,
 } from "../data/site";
 ---
 
@@ -28,29 +29,41 @@ import {
 
   <!-- Le problème -->
   <section class="py-24 bg-surface">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <div class="max-w-2xl mb-14">
-        <h2 class="reveal font-heading text-3xl md:text-4xl font-bold text-navy mb-4">
-          Chaque jour sans solution numérique a un coût
-        </h2>
-        <p class="reveal text-navy/70">
-          Ce ne sont pas juste des désagréments : ce sont des opportunités concrètes qui échappent à votre
-          entreprise.
-        </p>
+    <div class="max-w-6xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="max-w-2xl mb-10">
+          <h2 class="reveal font-heading text-3xl md:text-4xl font-bold text-navy mb-4">
+            Chaque jour sans solution numérique a un coût
+          </h2>
+          <p class="reveal text-navy/70">
+            Ce ne sont pas juste des désagréments : ce sont des opportunités concrètes qui échappent à votre
+            entreprise.
+          </p>
+        </div>
+
+        <div class="space-y-8">
+          {
+            painPoints.map((point) => (
+              <div class="reveal">
+                <div class="w-10 h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center font-heading font-bold mb-4">
+                  !
+                </div>
+                <h3 class="font-heading text-lg font-semibold text-navy mb-2">{point.title}</h3>
+                <p class="text-sm text-navy/70 leading-relaxed">{point.description}</p>
+              </div>
+            ))
+          }
+        </div>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8">
-        {
-          painPoints.map((point) => (
-            <div class="reveal">
-              <div class="w-10 h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center font-heading font-bold mb-4">
-                !
-              </div>
-              <h3 class="font-heading text-lg font-semibold text-navy mb-2">{point.title}</h3>
-              <p class="text-sm text-navy/70 leading-relaxed">{point.description}</p>
-            </div>
-          ))
-        }
+      <div class="reveal rounded-2xl overflow-hidden shadow-lg">
+        <Image
+          src={painPointImage}
+          alt="Une professionnelle débordée par les appels et tâches manuelles"
+          width={600}
+          height={700}
+          class="w-full h-full object-cover"
+        />
       </div>
     </div>
   </section>
