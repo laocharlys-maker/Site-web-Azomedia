@@ -170,6 +170,16 @@ export const sectors = [
   "Services professionnels",
 ];
 
+// Icône affichée à côté de chaque secteur dans la section "Secteurs ciblés" (voir Icon.astro)
+export const sectorIcons: Record<(typeof sectors)[number], string> = {
+  "Cliniques & Santé": "health",
+  Éducation: "education",
+  "Commerce & PME": "shop",
+  Administration: "building",
+  "Hôtellerie & Restauration": "hospitality",
+  "Services professionnels": "briefcase",
+};
+
 export type Testimonial = {
   name: string;
   role: string;

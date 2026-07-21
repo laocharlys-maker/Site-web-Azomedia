@@ -12,6 +12,7 @@ import {
   painPoints,
   pillars,
   sectors,
+  sectorIcons,
   testimonials,
   realisations,
   founder,
@@ -222,7 +223,8 @@ import {
       <div class="flex flex-wrap gap-3">
         {
           sectors.map((sector) => (
-            <span class="reveal px-5 py-2.5 rounded-full bg-white border border-navy/10 text-sm font-medium text-navy">
+            <span class="reveal inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-navy/10 text-sm font-medium text-navy">
+              <Icon name={sectorIcons[sector]} class="w-4 h-4 text-accent shrink-0" />
               {sector}
             </span>
           ))
