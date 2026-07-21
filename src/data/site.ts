@@ -7,6 +7,7 @@ import evalTyrannus from "../assets/realisations/eval-tyrannus.png";
 import azpoint from "../assets/profile/u_h0yvbj97-fingerprint-4703841_1920.jpg";
 import founderPhoto from "../assets/profile/WhatsApp Image 2025-09-20 at 15.08.48.jpeg";
 import teamPhoto from "../assets/profile/pexels-gabby-k-9488846.jpg";
+import whyUsImage from "../assets/profile/geralt-shaking-hands-3205463_1920.jpg";
 
 // Coordonnées et liens globaux du site.
 // -> Modifie ces valeurs ici, elles sont réutilisées partout (header, footer, CTA, WhatsApp flottant).
@@ -155,6 +156,8 @@ export const pillars = [
     description: "Des objectifs clairs fixés dès le départ, et un suivi des résultats concrets obtenus.",
   },
 ];
+
+export { whyUsImage };
 
 export const sectors = [
   "Cliniques & Santé",

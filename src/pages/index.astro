@@ -6,7 +6,18 @@ import Icon from "../components/Icon.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import TestimonialCard from "../components/TestimonialCard.astro";
 import CTASection from "../components/CTASection.astro";
-import { site, services, painPoints, pillars, sectors, testimonials, realisations, founder, team } from "../data/site";
+import {
+  site,
+  services,
+  painPoints,
+  pillars,
+  sectors,
+  testimonials,
+  realisations,
+  founder,
+  team,
+  whyUsImage,
+} from "../data/site";
 ---
 
 <Layout
@@ -69,26 +80,38 @@ import { site, services, painPoints, pillars, sectors, testimonials, realisation
 
   <!-- Pourquoi AzoMedIA -->
   <section id="pourquoi-nous" class="py-24 bg-surface scroll-mt-20">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <div class="max-w-2xl mb-14">
-        <p class="reveal text-accent font-semibold text-sm uppercase tracking-widest mb-3">Pourquoi AzoMedIA</p>
-        <h2 class="reveal font-heading text-3xl md:text-4xl font-bold text-navy mb-4">
-          Une approche pensée pour les réalités du terrain
-        </h2>
+    <div class="max-w-6xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+      <div class="reveal order-2 lg:order-1 rounded-2xl overflow-hidden shadow-lg">
+        <Image
+          src={whyUsImage}
+          alt="Une relation de confiance entre AzoMedIA et ses clients"
+          width={600}
+          height={600}
+          class="w-full h-full object-cover"
+        />
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {
-          pillars.map((pillar) => (
-            <div class="reveal">
-              <div class="w-10 h-10 rounded-xl bg-navy text-white flex items-center justify-center mb-4">
-                <Icon name="check" class="w-5 h-5" />
+      <div class="order-1 lg:order-2">
+        <div class="max-w-2xl mb-10">
+          <p class="reveal text-accent font-semibold text-sm uppercase tracking-widest mb-3">Pourquoi AzoMedIA</p>
+          <h2 class="reveal font-heading text-3xl md:text-4xl font-bold text-navy mb-4">
+            Une approche pensée pour les réalités du terrain
+          </h2>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-8">
+          {
+            pillars.map((pillar) => (
+              <div class="reveal">
+                <div class="w-10 h-10 rounded-xl bg-navy text-white flex items-center justify-center mb-4">
+                  <Icon name="check" class="w-5 h-5" />
+                </div>
+                <h3 class="font-heading text-base font-semibold text-navy mb-2">{pillar.title}</h3>
+                <p class="text-sm text-navy/70 leading-relaxed">{pillar.description}</p>
               </div>
-              <h3 class="font-heading text-base font-semibold text-navy mb-2">{pillar.title}</h3>
-              <p class="text-sm text-navy/70 leading-relaxed">{pillar.description}</p>
-            </div>
-          ))
-        }
+            ))
+          }
+        </div>
       </div>
     </div>
   </section>
