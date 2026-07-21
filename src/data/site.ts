@@ -7,8 +7,10 @@ import evalTyrannus from "../assets/realisations/eval-tyrannus.png";
 import azpoint from "../assets/profile/u_h0yvbj97-fingerprint-4703841_1920.jpg";
 import founderPhoto from "../assets/profile/WhatsApp Image 2025-09-20 at 15.08.48.jpeg";
 import teamPhoto from "../assets/profile/pexels-gabby-k-9488846.jpg";
-import whyUsImage from "../assets/profile/geralt-shaking-hands-3205463_1920.jpg";
+import whyUsImage from "../assets/profile/pexels-mikhail-nilov-9301246.jpg";
 import painPointImage from "../assets/profile/istockphoto-1359976219-612x612.jpg";
+import ctaImage from "../assets/profile/pexels-gabby-k-9488840.jpg";
+import contactBgImage from "../assets/profile/pexels-pnw-prod-8276633.jpg";
 
 // Coordonnées et liens globaux du site.
 // -> Modifie ces valeurs ici, elles sont réutilisées partout (header, footer, CTA, WhatsApp flottant).
@@ -158,7 +160,7 @@ export const pillars = [
   },
 ];
 
-export { whyUsImage, painPointImage };
+export { whyUsImage, painPointImage, ctaImage, contactBgImage };
 
 export const sectors = [
   "Cliniques & Santé",

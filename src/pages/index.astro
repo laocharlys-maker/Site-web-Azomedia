@@ -18,6 +18,7 @@ import {
   team,
   whyUsImage,
   painPointImage,
+  contactBgImage,
 } from "../data/site";
 ---
 
@@ -247,38 +248,47 @@ import {
   <CTASection />
 
   <!-- Contact -->
-  <section id="contact" class="py-24 bg-surface scroll-mt-20">
-    <div class="max-w-5xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-14">
+  <section id="contact" class="relative py-24 overflow-hidden scroll-mt-20">
+    <Image
+      src={contactBgImage}
+      alt=""
+      width={1600}
+      height={900}
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-navy/90"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-14">
       <div>
         <p class="reveal text-accent font-semibold text-sm uppercase tracking-widest mb-3">Contact</p>
-        <h2 class="reveal font-heading text-3xl md:text-4xl font-bold text-navy mb-4">Parlons de votre projet</h2>
-        <p class="reveal text-navy/70 mb-8">
+        <h2 class="reveal font-heading text-3xl md:text-4xl font-bold text-white mb-4">Parlons de votre projet</h2>
+        <p class="reveal text-white/70 mb-8">
           Décrivez-nous votre besoin, on revient vers vous rapidement pour caler un premier échange.
         </p>
 
         <ul class="reveal space-y-4 text-sm">
           <li class="flex items-center gap-3">
-            <span class="w-9 h-9 rounded-full bg-accent/10 text-accent flex items-center justify-center">
+            <span class="w-9 h-9 rounded-full bg-white/10 text-accent flex items-center justify-center">
               <Icon name="phone" class="w-4 h-4" />
             </span>
-            <a href={`tel:${site.phone.replace(/\s/g, "")}`} class="text-navy font-medium">{site.phone}</a>
+            <a href={`tel:${site.phone.replace(/\s/g, "")}`} class="text-white font-medium">{site.phone}</a>
           </li>
           <li class="flex items-center gap-3">
-            <span class="w-9 h-9 rounded-full bg-accent/10 text-accent flex items-center justify-center">
+            <span class="w-9 h-9 rounded-full bg-white/10 text-accent flex items-center justify-center">
               <Icon name="mail" class="w-4 h-4" />
             </span>
-            <a href={`mailto:${site.email}`} class="text-navy font-medium">{site.email}</a>
+            <a href={`mailto:${site.email}`} class="text-white font-medium">{site.email}</a>
           </li>
           <li class="flex items-center gap-3">
-            <span class="w-9 h-9 rounded-full bg-accent/10 text-accent flex items-center justify-center">
+            <span class="w-9 h-9 rounded-full bg-white/10 text-accent flex items-center justify-center">
               <Icon name="pin" class="w-4 h-4" />
             </span>
-            <span class="text-navy font-medium">{site.address}</span>
+            <span class="text-white font-medium">{site.address}</span>
           </li>
         </ul>
       </div>
 
-      <form id="contact-form" class="reveal bg-white rounded-2xl border border-navy/5 shadow-sm p-8 space-y-4">
+      <form id="contact-form" class="reveal bg-white rounded-2xl border border-navy/5 shadow-lg p-8 space-y-4">
         <input type="hidden" name="access_key" value={site.web3formsAccessKey} />
         <input type="hidden" name="subject" value="Nouveau message — formulaire de contact AzoMedIA" />
         <input type="hidden" name="from_name" value="Formulaire Contact — site AzoMedIA" />
@@ -353,6 +363,7 @@ import {
       </form>
     </div>
   </section>
+
 </Layout>
 
 <script>
