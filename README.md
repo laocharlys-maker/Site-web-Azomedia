@@ -48,56 +48,36 @@ Tant que ce placeholder n'est pas remplacé, les formulaires afficheront un mess
 - **Réseaux sociaux** : Instagram en attente du vrai lien (`#` placeholder).
 - **Photo "À propos"** : avatar temporaire en attendant la vraie photo (à déposer dans `src/assets/profile/`).
 
-## Déploiement sur VPS Hostinger (Ubuntu 22.04 + Nginx)
+## Déploiement — Netlify
 
-Deux options : la GitHub Action déjà configurée (recommandée), ou un déploiement manuel.
+Le site est hébergé sur **Netlify**, connecté directement à ce repo GitHub. Chaque `git push` sur la branche liée au
+site déclenche automatiquement un nouveau build et déploiement — rien à faire à la main.
 
-### Option recommandée — GitHub Actions (déploiement automatique à chaque push sur `main`)
+- **Build command** : `npm run build`
+- **Publish directory** : `dist`
+- **Domaine de production** : [azomedia.site](https://azomedia.site) (et `www.azomedia.site`, qui redirige vers le
+  domaine principal)
+- Le sous-domaine `azomedia.netlify.app` reste toujours accessible en secours
 
-Le workflow `.github/workflows/deploy.yml` build le site et le pousse sur le VPS via `rsync` en SSH. C'est le plus
-simple à maintenir pour itérer souvent : un `git push` suffit, pas de commande à retaper.
+### DNS
 
-**Mise en place (une seule fois) :**
+Le nom de domaine `azomedia.site` est enregistré chez **LWS**. La zone DNS y contient :
 
-1. Sur le VPS, créer un utilisateur dédié au déploiement (ou utiliser un existant) et le dossier cible :
-   ```bash
-   sudo mkdir -p /var/www/azomedia/dist
-   sudo chown -R $USER:$USER /var/www/azomedia
-   ```
-2. Générer une paire de clés SSH dédiée (en local, pas sur le VPS) :
-   ```bash
-   ssh-keygen -t ed25519 -f azomedia_deploy_key -N ""
-   ```
-3. Ajouter la clé publique au VPS : `cat azomedia_deploy_key.pub` puis l'ajouter dans
-   `~/.ssh/authorized_keys` de l'utilisateur de déploiement sur le VPS.
-4. Dans GitHub → Settings → Secrets and variables → Actions du repo, ajouter :
-   - `VPS_HOST` : IP ou domaine du VPS
-   - `VPS_USER` : l'utilisateur de déploiement
-   - `VPS_SSH_KEY` : contenu de la clé **privée** (`azomedia_deploy_key`)
-   - Variable `VPS_PATH` : `/var/www/azomedia/dist`
-5. Configurer Nginx sur le VPS avec `nginx.conf.example` (voir plus bas) pour servir ce dossier.
+| Type | Hôte | Valeur |
+| --- | --- | --- |
+| A | `@` | `75.2.60.5` (load balancer Netlify) |
+| CNAME | `www` | `azomedia.netlify.app` |
 
-Ensuite, chaque `git push` sur `main` build et déploie automatiquement.
+Le certificat HTTPS (Let's Encrypt) est généré et renouvelé automatiquement par Netlify.
 
-### Option manuelle — rsync direct
+### Variables sensibles
 
-Si tu préfères déployer à la main depuis ta machine :
+La clé Web3Forms (`web3formsAccessKey` dans `src/data/site.ts`) est actuellement en clair dans le code — acceptable
+pour une clé publique de ce type (elle est conçue pour être exposée côté client), mais si un jour le projet a besoin
+d'autres secrets (clé API IA pour un chatbot, etc.), les stocker en variables d'environnement Netlify plutôt que dans
+le code.
 
-```bash
-npm run build
-rsync -avzr --delete dist/ utilisateur@vps:/var/www/azomedia/dist/
-```
+## Historique
 
-### Configuration Nginx
-
-Voir `nginx.conf.example` à la racine du projet — à copier vers `/etc/nginx/sites-available/azomedia`, activer avec
-`ln -s`, puis `sudo nginx -t && sudo systemctl reload nginx`. Le fichier inclut une note pour activer HTTPS via
-Certbot.
-
-## Migration de domaine
-
-Le site est actuellement pensé pour `digital.azomedia.site`. Pour migrer vers le domaine mère `azomedia.site` :
-
-1. Mettre à jour `site` dans `astro.config.mjs` (déjà pointé sur `https://azomedia.site`)
-2. Pointer le DNS de `azomedia.site` vers le même VPS (ou un nouveau enregistrement A/CNAME)
-3. Dupliquer/adapter le bloc `server_name` dans la config Nginx et relancer Certbot pour le nouveau domaine
+Le projet a été pensé au départ pour un déploiement sur un VPS Hostinger avec Nginx (voir l'historique Git pour ces
+anciennes instructions) ; le passage à Netlify les a rendues obsolètes et elles ont été retirées de ce README.
