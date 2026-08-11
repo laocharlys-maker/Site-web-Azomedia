@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { navLinks } from "../data/site";
+import Icon from "./Icon.astro";
 import logo from "../assets/branding/logo.png";
 ---
 
@@ -14,15 +15,38 @@ import logo from "../assets/branding/logo.png";
 
     <nav class="hidden md:flex items-center gap-8">
       {
-        navLinks.map((link) => (
-          <a
-            href={link.href}
-            id="nav-link"
-            class="nav-link text-sm font-medium text-white/90 hover:text-white transition-colors"
-          >
-            {link.label}
-          </a>
-        ))
+        navLinks.map((link) =>
+          link.children ? (
+            <div class="relative group">
+              <a
+                href={link.href}
+                class="nav-link inline-flex items-center gap-1 text-sm font-medium text-white/90 hover:text-white transition-colors"
+              >
+                {link.label}
+                <Icon name="arrow" class="w-3 h-3 rotate-90" />
+              </a>
+              <div class="absolute top-full left-1/2 -translate-x-1/2 pt-3 hidden group-hover:block">
+                <div class="bg-white rounded-xl shadow-xl border border-navy/5 py-2 min-w-[280px]">
+                  {link.children.map((child) => (
+                    <a
+                      href={child.href}
+                      class="block px-4 py-2.5 text-sm text-navy hover:bg-surface hover:text-accent transition-colors"
+                    >
+                      {child.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <a
+              href={link.href}
+              class="nav-link text-sm font-medium text-white/90 hover:text-white transition-colors"
+            >
+              {link.label}
+            </a>
+          )
+        )
       }
     </nav>
 
@@ -47,15 +71,35 @@ import logo from "../assets/branding/logo.png";
   </div>
 
   <div id="mobile-menu" class="hidden md:hidden bg-navy border-t border-white/10">
-    <nav class="flex flex-col px-6 py-4 gap-4">
+    <nav class="flex flex-col px-6 py-4 gap-1">
       {
-        navLinks.map((link) => (
-          <a href={link.href} class="text-white/90 text-sm font-medium py-1">
-            {link.label}
-          </a>
-        ))
+        navLinks.map((link) =>
+          link.children ? (
+            <div class="border-b border-white/10 last:border-b-0">
+              <button
+                type="button"
+                class="mobile-submenu-toggle w-full flex items-center justify-between text-white/90 text-sm font-medium py-3"
+                aria-expanded="false"
+              >
+                {link.label}
+                <Icon name="arrow" class="w-3 h-3 rotate-90 transition-transform" />
+              </button>
+              <div class="mobile-submenu hidden pb-3 pl-4 flex flex-col gap-2">
+                {link.children.map((child) => (
+                  <a href={child.href} class="text-white/70 text-sm py-1">
+                    {child.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a href={link.href} class="text-white/90 text-sm font-medium py-3 border-b border-white/10 last:border-b-0">
+              {link.label}
+            </a>
+          )
+        )
       }
-      <button type="button" data-open-audit class="text-accent text-sm font-semibold py-1 text-left">
+      <button type="button" data-open-audit class="text-accent text-sm font-semibold py-3 text-left">
         Audit gratuit →
       </button>
     </nav>
@@ -83,5 +127,15 @@ import logo from "../assets/branding/logo.png";
     const expanded = menuBtn.getAttribute("aria-expanded") === "true";
     menuBtn.setAttribute("aria-expanded", String(!expanded));
     menu?.classList.toggle("hidden");
+  });
+
+  document.querySelectorAll(".mobile-submenu-toggle").forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const expanded = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!expanded));
+      toggle.nextElementSibling?.classList.toggle("hidden");
+      toggle.querySelector("svg")?.classList.toggle("rotate-90");
+      toggle.querySelector("svg")?.classList.toggle("-rotate-90");
+    });
   });
 </script>

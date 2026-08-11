@@ -4,12 +4,16 @@ import ticfocaTournoi from "../assets/realisations/ticfoca-tournoi.png";
 import ticfocaInscription from "../assets/realisations/ticfoca-inscription.png";
 import stage2026 from "../assets/realisations/stage-2026.png";
 import evalTyrannus from "../assets/realisations/eval-tyrannus.png";
-import azpoint from "../assets/profile/u_h0yvbj97-fingerprint-4703841_1920.jpg";
 import founderPhoto from "../assets/profile/WhatsApp Image 2025-09-20 at 15.08.48.jpeg";
 import teamPhoto from "../assets/profile/pexels-gabby-k-9488846.jpg";
 import whyUsImage from "../assets/profile/pexels-mikhail-nilov-9301246.jpg";
 import painPointImage from "../assets/profile/istockphoto-1359976219-612x612.jpg";
 import contactBgImage from "../assets/profile/pexels-pnw-prod-8276633.jpg";
+import azpointHero from "../assets/produits/azpoint-hero.jpg";
+import azpointTerminal from "../assets/produits/azpoint-terminal.png";
+import azpointDashboardOverview from "../assets/produits/azpoint-dashboard-overview.png";
+import azpointDashboardStats from "../assets/produits/azpoint-dashboard-stats.png";
+import azpointDashboardEmploye from "../assets/produits/azpoint-dashboard-employe.png";
 
 // Coordonnées et liens globaux du site.
 // -> Modifie ces valeurs ici, elles sont réutilisées partout (header, footer, CTA, WhatsApp flottant).
@@ -52,8 +56,22 @@ export const team = {
   caption: "Une équipe de jeunes passionnés au service des entreprises.",
 };
 
-export const navLinks = [
+export type NavLink = {
+  label: string;
+  href: string;
+  children?: { label: string; href: string }[];
+};
+
+export const navLinks: NavLink[] = [
   { label: "Services", href: "/#services" },
+  {
+    label: "Nos produits",
+    href: "/produits/azpoint",
+    children: [
+      { label: "Système de pointage intelligent", href: "/produits/azpoint" },
+      // TODO: ajouter AURORE ici une fois sa page prête : { label: "AURORE — Gestion pour cabinets d'avocats", href: "/produits/aurore" }
+    ],
+  },
   { label: "Pourquoi nous", href: "/#pourquoi-nous" },
   { label: "À propos", href: "/#a-propos" },
   { label: "Réalisations", href: "/#realisations" },
@@ -215,6 +233,7 @@ type Realisation = {
   image?: ImageMetadata;
   icon?: string;
   placeholder?: boolean;
+  link?: string;
 };
 
 export const realisations: Realisation[] = [
@@ -257,7 +276,8 @@ export const realisations: Realisation[] = [
     name: "AzPoint",
     category: "Gestion RH / Pointage",
     description: "Solution numérique de pointage pour les entreprises : suivi des présences et des horaires du personnel.",
-    image: azpoint,
+    image: azpointHero,
+    link: "/produits/azpoint",
   },
   // TODO: pas encore de capture d'écran pour cette solution — carte texte en attendant.
   {
@@ -266,5 +286,86 @@ export const realisations: Realisation[] = [
     description: "Outil numérique sur mesure pour les juristes et cabinets d'avocats, pensé pour leurs process métier.",
     icon: "scale",
     placeholder: true,
+  },
+];
+
+// Pages produits dédiées (src/pages/produits/[slug].astro)
+export type Product = {
+  slug: string;
+  name: string;
+  brand: string;
+  tagline: string;
+  description: string;
+  heroImage: ImageMetadata;
+  supportingImage?: ImageMetadata;
+  features: { icon: string; title: string; description: string }[];
+  screenshots: { image: ImageMetadata; caption: string }[];
+  audience: { icon: string; label: string }[];
+  demoUrl?: string;
+};
+
+export const products: Product[] = [
+  {
+    slug: "azpoint",
+    name: "AzPoint",
+    brand: "par AzoMedIA",
+    tagline: "Gérez les présences de votre équipe en toute sécurité, sans cahier, sans fraude, sans effort.",
+    description:
+      "AzPoint est un système de pointage biométrique intelligent qui identifie chaque employé par empreinte digitale en moins de 2 secondes. Les données sont centralisées en temps réel dans un tableau de bord web accessible depuis n'importe quel téléphone ou ordinateur. Le responsable RH reçoit automatiquement les alertes de retard sur WhatsApp, les rapports journaliers par email, et un export mensuel prêt pour la paie — sans aucune saisie manuelle.",
+    heroImage: azpointHero,
+    supportingImage: azpointTerminal,
+    features: [
+      {
+        icon: "fingerprint",
+        title: "Identification par empreinte digitale",
+        description: "Impossible à falsifier — chaque employé est reconnu en moins de 2 secondes.",
+      },
+      {
+        icon: "chart",
+        title: "Tableau de bord RH en temps réel",
+        description: "Présents, retards, absents : suivez tout en direct depuis un téléphone ou un ordinateur.",
+      },
+      {
+        icon: "whatsapp",
+        title: "Alertes WhatsApp instantanées",
+        description: "Le responsable RH est notifié dès qu'un retard est détecté, sans avoir à surveiller un écran.",
+      },
+      {
+        icon: "download",
+        title: "Export CSV mensuel",
+        description: "Un export prêt pour la paie chaque mois, sans aucune saisie manuelle.",
+      },
+      {
+        icon: "shield",
+        title: "Fonctionnement même hors connexion",
+        description: "Le terminal stocke les données localement en cas de coupure internet — rien n'est perdu.",
+      },
+      {
+        icon: "clock",
+        title: "Installation en 3 semaines",
+        description: "Aucune compétence technique requise de votre côté, on s'occupe de tout.",
+      },
+    ],
+    screenshots: [
+      {
+        image: azpointDashboardOverview,
+        caption: "Vue d'ensemble : effectif, présences, retards et absences en un coup d'œil.",
+      },
+      {
+        image: azpointDashboardStats,
+        caption: "Statistiques et tendance de l'équipe sur la semaine, avec export PDF mensuel.",
+      },
+      {
+        image: azpointDashboardEmploye,
+        caption: "Historique individuel : retards, absences et heures d'arrivée/départ par employé.",
+      },
+    ],
+    audience: [
+      { icon: "health", label: "Cliniques et centres de santé" },
+      { icon: "shop", label: "PME et entreprises de services" },
+      { icon: "education", label: "Écoles et universités" },
+      { icon: "factory", label: "Usines et entrepôts" },
+      { icon: "building", label: "Administrations et ONG" },
+    ],
   },
 ];

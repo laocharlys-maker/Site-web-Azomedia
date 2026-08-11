@@ -1,0 +1,172 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../../layouts/Layout.astro";
+import Icon from "../../components/Icon.astro";
+import CTASection from "../../components/CTASection.astro";
+import { products } from "../../data/site";
+
+export async function getStaticPaths() {
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+---
+
+<Layout
+  title={`${product.name} — ${product.brand} | AzoMedIA`}
+  description={product.tagline}
+>
+  <!-- Hero -->
+  <section class="relative bg-navy-gradient text-white overflow-hidden pt-40 pb-24">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-accent bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-6">
+          {product.brand}
+        </p>
+        <h1 class="font-heading text-4xl sm:text-5xl font-bold leading-tight mb-6 text-balance">
+          {product.name}
+        </h1>
+        <p class="text-white/75 text-base sm:text-lg mb-10 text-balance">
+          {product.tagline}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <button
+            type="button"
+            data-open-audit
+            class="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-white font-semibold px-8 py-3.5 rounded-full transition-colors"
+          >
+            Demander une démo
+            <Icon name="arrow" class="w-4 h-4" />
+          </button>
+          <a
+            href="/#realisations"
+            class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-3.5 rounded-full border border-white/20 transition-colors"
+          >
+            Voir nos autres réalisations
+          </a>
+        </div>
+      </div>
+
+      <div class="rounded-2xl overflow-hidden shadow-2xl">
+        <Image
+          src={product.heroImage}
+          alt={product.name}
+          width={700}
+          height={560}
+          class="w-full h-full object-cover"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Description -->
+  <section class="py-24 bg-surface">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="text-accent font-semibold text-sm uppercase tracking-widest mb-3">Comment ça marche</p>
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-navy mb-6">
+          Une solution pensée pour le terrain
+        </h2>
+        <p class="text-navy/70 leading-relaxed">{product.description}</p>
+      </div>
+
+      {
+        product.supportingImage && (
+          <div class="rounded-2xl overflow-hidden shadow-lg">
+            <Image
+              src={product.supportingImage}
+              alt={`Terminal ${product.name}`}
+              width={600}
+              height={600}
+              class="w-full h-full object-cover"
+            />
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <!-- Fonctionnalités -->
+  <section class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="max-w-2xl mb-14">
+        <p class="text-accent font-semibold text-sm uppercase tracking-widest mb-3">Fonctionnalités</p>
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-navy mb-4">Tout ce dont vous avez besoin</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          product.features.map((feature) => (
+            <div class="rounded-2xl p-6 border border-navy/5 bg-surface shadow-sm">
+              <div class="w-12 h-12 rounded-xl bg-accent/10 text-accent flex items-center justify-center mb-4">
+                <Icon name={feature.icon} class="w-6 h-6" />
+              </div>
+              <h3 class="font-heading text-lg font-semibold text-navy mb-2">{feature.title}</h3>
+              <p class="text-sm text-navy/70 leading-relaxed">{feature.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Captures d'écran -->
+  {
+    product.screenshots.length > 0 && (
+      <section class="py-24 bg-surface">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+          <div class="max-w-2xl mb-14">
+            <p class="text-accent font-semibold text-sm uppercase tracking-widest mb-3">En images</p>
+            <h2 class="font-heading text-3xl md:text-4xl font-bold text-navy mb-4">Le tableau de bord au quotidien</h2>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-6">
+            {product.screenshots.map((shot) => (
+              <div class="rounded-2xl overflow-hidden border border-navy/5 bg-white shadow-sm flex flex-col">
+                <Image
+                  src={shot.image}
+                  alt={shot.caption}
+                  width={480}
+                  height={360}
+                  class="w-full h-auto object-cover object-top border-b border-navy/5"
+                />
+                <p class="p-4 text-sm text-navy/70 leading-relaxed">{shot.caption}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Pour qui -->
+  <section class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="max-w-2xl mb-14">
+        <p class="text-accent font-semibold text-sm uppercase tracking-widest mb-3">Pour qui</p>
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-navy mb-4">
+          Adapté à de nombreux secteurs
+        </h2>
+      </div>
+
+      <div class="flex flex-wrap gap-3">
+        {
+          product.audience.map((item) => (
+            <span class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface border border-navy/10 text-sm font-medium text-navy">
+              <Icon name={item.icon} class="w-4 h-4 text-accent shrink-0" />
+              {item.label}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title={`Prêt à essayer ${product.name} dans votre organisation ?`}
+    subtitle="Un diagnostic gratuit, sans engagement, pour voir comment l'intégrer chez vous."
+  />
+</Layout>
