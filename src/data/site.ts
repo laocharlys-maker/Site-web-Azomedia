@@ -14,6 +14,9 @@ import azpointTerminal from "../assets/produits/azpoint-terminal.png";
 import azpointDashboardOverview from "../assets/produits/azpoint-dashboard-overview.png";
 import azpointDashboardStats from "../assets/produits/azpoint-dashboard-stats.png";
 import azpointDashboardEmploye from "../assets/produits/azpoint-dashboard-employe.png";
+import auroreHero from "../assets/produits/aurore-hero.png";
+import auroreDashboard from "../assets/produits/aurore-dashboard.png";
+import auroreParametres from "../assets/produits/aurore-parametres.png";
 
 // Coordonnées et liens globaux du site.
 // -> Modifie ces valeurs ici, elles sont réutilisées partout (header, footer, CTA, WhatsApp flottant).
@@ -69,7 +72,7 @@ export const navLinks: NavLink[] = [
     href: "/produits/azpoint",
     children: [
       { label: "Système de pointage intelligent", href: "/produits/azpoint" },
-      // TODO: ajouter AURORE ici une fois sa page prête : { label: "AURORE — Gestion pour cabinets d'avocats", href: "/produits/aurore" }
+      { label: "AURORE — Gestion pour cabinets d'avocats", href: "/produits/aurore" },
     ],
   },
   { label: "Pourquoi nous", href: "/#pourquoi-nous" },
@@ -279,13 +282,12 @@ export const realisations: Realisation[] = [
     image: azpointHero,
     link: "/produits/azpoint",
   },
-  // TODO: pas encore de capture d'écran pour cette solution — carte texte en attendant.
   {
-    name: "Solution pour cabinets juridiques",
+    name: "Aurore",
     category: "Secteur juridique",
-    description: "Outil numérique sur mesure pour les juristes et cabinets d'avocats, pensé pour leurs process métier.",
-    icon: "scale",
-    placeholder: true,
+    description: "Logiciel de gestion pour cabinets d'avocats : rédaction d'actes par IA, agenda, facturation et coffre-fort documentaire.",
+    image: auroreDashboard,
+    link: "/produits/aurore",
   },
 ];
 
@@ -301,6 +303,7 @@ export type Product = {
   features: { icon: string; title: string; description: string }[];
   screenshots: { image: ImageMetadata; caption: string }[];
   audience: { icon: string; label: string }[];
+  audienceNote?: string;
   demoUrl?: string;
 };
 
@@ -367,5 +370,64 @@ export const products: Product[] = [
       { icon: "factory", label: "Usines et entrepôts" },
       { icon: "building", label: "Administrations et ONG" },
     ],
+  },
+  {
+    slug: "aurore",
+    name: "Aurore",
+    brand: "par AzoMedIA",
+    tagline:
+      "Toute la gestion de votre cabinet, un seul logiciel : dossiers, actes, agenda, temps, facturation — sans jamais faire sortir vos données du cabinet.",
+    description:
+      "Aurore est un logiciel installé au cabinet — pas un site web où l'on colle ses dossiers — qui couvre tout le cycle de vie d'une affaire : rédaction assistée par IA de 16 types d'actes (assignation, conclusions, mise en demeure, plaidoirie...), circuit de validation collaboratif entre collaborateurs et avocats, agenda unifié synchronisable avec Google Calendar ou Outlook, suivi du temps et facturation, coffre-fort documentaire avec OCR 100% local, et recherche juridique fiabilisée avec vérification des sources. La sécurité est la colonne vertébrale du logiciel : pseudonymisation systématique avant tout appel IA, chiffrement au repos de toutes les données sensibles, et aucune donnée qui ne transite vers un tiers en dehors du strict nécessaire à la rédaction d'actes.",
+    heroImage: auroreHero,
+    features: [
+      {
+        icon: "edit",
+        title: "Rédaction d'actes par IA",
+        description: "16 types de documents générés en quelques minutes, ou rédaction libre pour le sur-mesure.",
+      },
+      {
+        icon: "calendar",
+        title: "Agenda de cabinet unifié",
+        description: "Audiences, RDV et échéances au même endroit, synchronisé avec Google Calendar ou Outlook.",
+      },
+      {
+        icon: "clock",
+        title: "Suivi du temps → facturation",
+        description: "Chronométrez le temps passé sur un dossier et générez la facture en un clic.",
+      },
+      {
+        icon: "briefcase",
+        title: "Coffre-fort documentaire intelligent",
+        description: "Toutes les pièces d'un dossier stockées et chiffrées, texte des scans reconnu et recherchable.",
+      },
+      {
+        icon: "team",
+        title: "Circuit de validation collaboratif",
+        description: "Remarques, versions historisées, verrouillage — plus de documents écrasés par erreur.",
+      },
+      {
+        icon: "shield",
+        title: "Confidentialité totale",
+        description: "Données hébergées au cabinet, pseudonymisation avant IA, OCR 100% local.",
+      },
+    ],
+    screenshots: [
+      {
+        image: auroreDashboard,
+        caption: "Tableau de bord du cabinet : dossiers actifs, échéances, documents générés et répartition par type d'acte.",
+      },
+      {
+        image: auroreParametres,
+        caption: "Paramètres fins du cabinet : identité, email de contact, archivage automatique et limites de génération.",
+      },
+    ],
+    audience: [
+      { icon: "team", label: "Cabinets de 2 à 15 collaborateurs" },
+      { icon: "scale", label: "Contentieux civil, commercial, recouvrement" },
+      { icon: "pin", label: "Bénin et Afrique francophone" },
+    ],
+    audienceNote:
+      "Un cabinet solo à très faible volume reste un moins bon fit : la valeur d'Aurore vient surtout de la coordination entre plusieurs personnes.",
   },
 ];

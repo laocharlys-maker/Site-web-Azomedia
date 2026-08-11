@@ -64,7 +64,7 @@ const { product } = Astro.props;
 
   <!-- Description -->
   <section class="py-24 bg-surface">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+    <div class:list={["max-w-6xl mx-auto px-6 lg:px-8 gap-12 items-center", product.supportingImage ? "grid lg:grid-cols-2" : "max-w-3xl"]}>
       <div>
         <p class="text-accent font-semibold text-sm uppercase tracking-widest mb-3">Comment ça marche</p>
         <h2 class="font-heading text-3xl md:text-4xl font-bold text-navy mb-6">
@@ -162,6 +162,8 @@ const { product } = Astro.props;
           ))
         }
       </div>
+
+      {product.audienceNote && <p class="mt-6 text-sm text-navy/50 italic max-w-2xl">{product.audienceNote}</p>}
     </div>
   </section>
 
