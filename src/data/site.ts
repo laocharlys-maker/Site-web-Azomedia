@@ -17,6 +17,10 @@ import azpointDashboardEmploye from "../assets/produits/azpoint-dashboard-employ
 import auroreHero from "../assets/produits/aurore-hero.png";
 import auroreDashboard from "../assets/produits/aurore-dashboard.png";
 import auroreParametres from "../assets/produits/aurore-parametres.png";
+import skolopayHero from "../assets/produits/skolopay-hero.jpg";
+import skolopayDashboard from "../assets/produits/skolopay-dashboard.jpg";
+import skolopayPaiement from "../assets/produits/skolopay-paiement.jpg";
+import skolopayFrais from "../assets/produits/skolopay-frais.jpg";
 
 // Coordonnées et liens globaux du site.
 // -> Modifie ces valeurs ici, elles sont réutilisées partout (header, footer, CTA, WhatsApp flottant).
@@ -73,6 +77,7 @@ export const navLinks: NavLink[] = [
     children: [
       { label: "Système de pointage intelligent", href: "/produits/azpoint" },
       { label: "AURORE — Gestion pour cabinets d'avocats", href: "/produits/aurore" },
+      { label: "SkoloPay — Solution complète de gestion des écoles", href: "/produits/skolopay" },
     ],
   },
   { label: "Pourquoi nous", href: "/#pourquoi-nous" },
@@ -289,6 +294,13 @@ export const realisations: Realisation[] = [
     image: auroreDashboard,
     link: "/produits/aurore",
   },
+  {
+    name: "SkoloPay",
+    category: "Éducation / Gestion scolaire",
+    description: "Logiciel de gestion des frais scolaires : reçus PDF automatiques, relances WhatsApp et Email, fonctionne sans dépendre d'internet au quotidien.",
+    image: skolopayHero,
+    link: "/produits/skolopay",
+  },
 ];
 
 // Pages produits dédiées (src/pages/produits/[slug].astro)
@@ -429,5 +441,67 @@ export const products: Product[] = [
     ],
     audienceNote:
       "Un cabinet solo à très faible volume reste un moins bon fit : la valeur d'Aurore vient surtout de la coordination entre plusieurs personnes.",
+  },
+  {
+    slug: "skolopay",
+    name: "SkoloPay",
+    brand: "par AzoMedIA",
+    tagline: "Ne perdez plus un franc à cause d'un cahier mal tenu.",
+    description:
+      "SkoloPay est le logiciel de gestion des frais scolaires pensé pour les écoles béninoises : chaque paiement génère automatiquement un reçu PDF (logo école, IFU, n° de facture, mode de paiement, solde restant), l'excédent d'un versement est réparti intelligemment sur les tranches suivantes, et les frais s'adaptent à chaque catégorie — scolarité en tranches libres, cantine en 11 mensualités auto-générées, uniformes et examens en paiement unique. Le comptable ne relance plus personne à la main : des rappels programmés à J-15, J-7, J-3 et jour J partent automatiquement par WhatsApp et Email, et le directeur reçoit chaque vendredi un récapitulatif hebdomadaire. Les données sont hébergées localement à l'école, mono-poste ou en réseau interne, pour que l'encaissement continue même quand internet coupe.",
+    heroImage: skolopayHero,
+    supportingImage: skolopayPaiement,
+    features: [
+      {
+        icon: "receipt",
+        title: "Reçu PDF automatique",
+        description: "Généré à chaque paiement : logo de l'école, IFU, numéro de facture, mode de paiement et solde restant.",
+      },
+      {
+        icon: "chart",
+        title: "Tableau de bord des retards",
+        description: "Vue en temps réel du recouvrement par élève, par classe et par famille.",
+      },
+      {
+        icon: "whatsapp",
+        title: "Relances automatiques",
+        description: "Rappels programmés à J-15, J-7, J-3 et jour J, envoyés par WhatsApp et Email sans intervention manuelle.",
+      },
+      {
+        icon: "briefcase",
+        title: "Frais adaptés par catégorie",
+        description: "Scolarité en tranches libres, cantine en 11 mensualités auto-générées, uniformes et examens en paiement unique.",
+      },
+      {
+        icon: "wifiOff",
+        title: "Fonctionne sans internet",
+        description: "Données hébergées localement à l'école, mono-poste ou réseau interne — aucune dépendance au quotidien.",
+      },
+      {
+        icon: "team",
+        title: "Rôles et permissions",
+        description: "Chaque utilisateur — Admin, Directeur, Comptable, Secrétaire — accède uniquement à ce qui le concerne.",
+      },
+    ],
+    screenshots: [
+      {
+        image: skolopayDashboard,
+        caption: "Tableau de bord : total dû, total encaissé, reste à recouvrer et taux de recouvrement par classe.",
+      },
+      {
+        image: skolopayPaiement,
+        caption: "Écran de paiement : répartition sur les tranches, solde restant et reçu imprimable en un clic.",
+      },
+      {
+        image: skolopayFrais,
+        caption: "Structures de frais par classe : scolarité, uniformes et autres frais configurés en quelques clics.",
+      },
+    ],
+    audience: [
+      { icon: "education", label: "Écoles maternelles, primaires et secondaires privées" },
+      { icon: "team", label: "Directeurs et promoteurs d'écoles" },
+      { icon: "briefcase", label: "Comptables et secrétaires d'établissement" },
+      { icon: "pin", label: "Bénin, y compris hors zones à internet fiable" },
+    ],
   },
 ];
