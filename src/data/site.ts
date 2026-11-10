@@ -21,6 +21,7 @@ import skolopayHero from "../assets/produits/skolopay-hero.jpg";
 import skolopayDashboard from "../assets/produits/skolopay-dashboard.jpg";
 import skolopayPaiement from "../assets/produits/skolopay-paiement.jpg";
 import skolopayFrais from "../assets/produits/skolopay-frais.jpg";
+import comptaflowHero from "../assets/produits/comptaflow-hero.jpg";
 
 // Coordonnées et liens globaux du site.
 // -> Modifie ces valeurs ici, elles sont réutilisées partout (header, footer, CTA, WhatsApp flottant).
@@ -300,6 +301,13 @@ export const realisations: Realisation[] = [
     description: "Logiciel de gestion des frais scolaires : reçus PDF automatiques, relances WhatsApp et Email, fonctionne sans dépendre d'internet au quotidien.",
     image: skolopayHero,
     link: "/produits/skolopay",
+  },
+  {
+    name: "Compta Flow",
+    category: "Cabinets comptables et fiscaux",
+    description: "Logiciel pour cabinets comptables : lecture et contrôle automatiques des factures, écritures proposées, grand livre et balance. Vous ne traitez que les exceptions.",
+    image: comptaflowHero,
+    link: "/comptaflow/",
   },
 ];
 
